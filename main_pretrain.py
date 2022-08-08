@@ -5,7 +5,8 @@ from pprint import pprint
 from pytorch_lightning import Trainer, seed_everything
 from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.loggers import WandbLogger
-from pytorch_lightning.plugins import DDPPlugin
+# from pytorch_lightning.plugins import DDPPlugin
+from pytorch_lightning.strategies.ddp import DDPStrategy
 
 from src.args.setup import parse_args_pretrain
 from src.methods import METHODS
@@ -181,7 +182,7 @@ def main():
         args,
         logger=wandb_logger if args.wandb else None,
         callbacks=callbacks,
-        plugins=DDPPlugin(find_unused_parameters=False),
+        plugins=DDPStrategy(find_unused_parameters=False),
         enable_checkpointing=False,
         # terminate_on_nan=True,
         accelerator="gpu",
