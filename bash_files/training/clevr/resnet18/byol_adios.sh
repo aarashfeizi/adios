@@ -1,0 +1,32 @@
+python main_pretrain.py \
+    --alpha_entropy 0. \
+    --alpha_sparsity 0.40384562663515944 \
+    --batch_size 128 \
+    --lr 0.24140186236916927 \
+    --mask_lr 0.06599301363636853 \
+    --max_epochs 500 \
+    --weight_decay 1e-05 \
+    --scheduler warmup_cosine \
+    --optimizer sgd \
+    --dataset clevr \
+    --brightness 0.4 \
+    --contrast 0.4 \
+    --hue 0.1 \
+    --saturation 0.2 \
+    --N 6 \
+    --encoder resnet18 \
+    --mask_fbase 16 \
+    --method byol_adios \
+    --output_dim 256 \
+    --pred_hidden_dim 8192 \
+    --proj_hidden_dim 4096 \
+    --unet_norm gn \
+    --gpus 0 \
+    --data_dir /home/mila/f/feiziaar/scratch/ \
+    --wandb_dir /home/mila/f/feiziaar/scratch/adios/wandb/ \
+    --checkpoint_dir /home/mila/f/feiziaar/scratch/adios/trained_models \
+    --project adios \
+    --entity aarashfeizi \
+    --name byol_adios_resnet18_clevr \
+    --wandb True
+# note: replace --data_dir, --wandb_dir, --checkpoint_dir, --project, --entity, --name with your custom values.
