@@ -182,8 +182,8 @@ def main():
         logger=wandb_logger if args.wandb else None,
         callbacks=callbacks,
         plugins=DDPPlugin(find_unused_parameters=False),
-        checkpoint_callback=False,
-        terminate_on_nan=True,
+        enable_checkpointing=False,
+        # terminate_on_nan=True,
         accelerator="ddp",
         check_val_every_n_epoch=args.validation_frequency,
     )

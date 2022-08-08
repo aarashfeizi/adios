@@ -73,7 +73,6 @@ class BaseModel(pl.LightningModule):
         weight_decay: float,
         classifier_lr: float,
         exclude_bias_n_norm: bool,
-        accumulate_grad_batches: int,
         extra_optimizer_args: Dict,
         scheduler: str,
         min_lr: float,
@@ -83,6 +82,7 @@ class BaseModel(pl.LightningModule):
         n_crops: int,
         n_small_crops: int,
         img_size: int,
+        accumulate_grad_batches: int = 1,
         eta_lars: float = 1e-3,
         grad_clip_lars: bool = False,
         lr_decay_steps: Sequence = None,
@@ -157,6 +157,12 @@ class BaseModel(pl.LightningModule):
         self.img_size = img_size
         self.disable_knn_eval = disable_knn_eval
         self.knn_k = knn_k
+
+        if self.accumulate_grad_batches is None:
+            print('self.accumulate_grad_batches is None!!')
+            self.accumulate_grad_batches = 1
+        else:
+            print(f'self.accumulate_grad_batches is {self.accumulate_grad_batches}!! Yay!')
 
         # sanity checks on multicrop
         if self.multicrop:
