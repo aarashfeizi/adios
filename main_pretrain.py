@@ -184,7 +184,7 @@ def main():
         plugins=DDPPlugin(find_unused_parameters=False),
         enable_checkpointing=False,
         # terminate_on_nan=True,
-        accelerator="ddp",
+        accelerator="gpu",
         check_val_every_n_epoch=args.validation_frequency,
     )
 
